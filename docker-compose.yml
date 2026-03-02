@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+
+  ai-model-service:
+    build: ./ai-model-service
+    container_name: sentinelflow-ai
+    ports:
+      - "5000:5000"
+
+  api-gateway:
+    build: ./api-gateway
+    container_name: sentinelflow-api
+    ports:
+      - "8080:8080"
+    depends_on:
+      - ai-model-service
